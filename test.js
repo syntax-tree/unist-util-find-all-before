@@ -2,10 +2,10 @@
 
 var assert = require('assert');
 var test = require('tape');
-var mdast = require('mdast');
+var remark = require('remark');
 var findAllBefore = require('./');
 
-var tree = mdast.parse('Some *emphasis*, **strongness**, and `code`.');
+var tree = remark().parse('Some *emphasis*, **strongness**, and `code`.');
 var paragraph = tree.children[0];
 var children = paragraph.children;
 

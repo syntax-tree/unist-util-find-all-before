@@ -64,7 +64,7 @@ emphasis[1]
 
 ## API
 
-### findAllBefore(parent, index|node\[, test\])
+### findAllBefore(parent, index|node\[, test])
 
 Find the nodes before `index` (or `node`), that pass `test` (when given).
 

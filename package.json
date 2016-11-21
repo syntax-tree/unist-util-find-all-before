@@ -23,18 +23,15 @@
   "devDependencies": {
     "browserify": "^11.0.0",
     "esmangle": "^1.0.0",
-    "mdast": "^1.0.0",
-    "mdast-comment-config": "^1.0.0",
-    "mdast-github": "^1.0.0",
-    "mdast-lint": "^1.0.0",
-    "mdast-slug": "^2.0.0",
-    "mdast-validate-links": "^1.0.0",
+    "remark": "^6.0.0",
+    "remark-cli": "^2.0.0",
+    "remark-preset-wooorm": "^1.0.0",
     "nyc": "^9.0.1",
     "tape": "^4.6.2",
     "xo": "^0.17.1"
   },
   "scripts": {
-    "build-md": "mdast . --quiet",
+    "build-md": "remark . -foq",
     "build-bundle": "browserify index.js --no-builtins -s unistUtilFindAllBefore > unist-util-find-all-before.js",
     "build-mangle": "esmangle unist-util-find-all-before.js > unist-util-find-all-before.min.js",
     "build": "npm run build-md && npm run build-bundle && npm run build-mangle",
@@ -54,5 +51,8 @@
     "ignore": [
       "unist-util-find-all-before.js"
     ]
+  },
+  "remarkConfig": {
+    "presets": "wooorm"
   }
 }
