@@ -58,7 +58,7 @@ test('unist-util-find-all-before', function (t) {
         function () {
           findAllBefore({type: 'foo', children: [{type: 'bar'}]}, 1, false);
         },
-        /Expected function, string, or node as test/
+        /Expected function, string, or object as test/
       );
 
       assert.throws(
@@ -68,7 +68,7 @@ test('unist-util-find-all-before', function (t) {
             children: [{type: 'bar'}]
           }, 1, true);
         },
-        /Expected function, string, or node as test/
+        /Expected function, string, or object as test/
       );
     },
     'should fail for invalid `test`'

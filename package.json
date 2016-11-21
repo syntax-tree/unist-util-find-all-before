@@ -18,10 +18,10 @@
     "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)"
   ],
   "dependencies": {
-    "unist-util-is": "^1.0.0"
+    "unist-util-is": "^2.0.0"
   },
   "devDependencies": {
-    "browserify": "^11.0.0",
+    "browserify": "^13.0.0",
     "esmangle": "^1.0.0",
     "remark": "^6.0.0",
     "remark-cli": "^2.0.0",
