@@ -5,32 +5,21 @@
   "license": "MIT",
   "keywords": [
     "unist",
-    "mdast",
-    "markdown",
-    "retext",
-    "natural",
-    "language",
     "node",
     "find",
     "before",
     "util",
     "utility"
   ],
+  "repository": "https://github.com/wooorm/unist-util-find-all-before",
+  "bugs": "https://github.com/wooorm/unist-util-find-all-before/issues",
+  "author": "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)",
+  "contributors": [
+    "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)"
+  ],
   "dependencies": {
     "unist-util-is": "^1.0.0"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/wooorm/unist-util-find-all-before.git"
-  },
-  "author": {
-    "name": "Titus Wormer",
-    "email": "tituswormer@gmail.com"
-  },
-  "files": [
-    "index.js",
-    "LICENSE"
-  ],
   "devDependencies": {
     "browserify": "^11.0.0",
     "esmangle": "^1.0.0",
@@ -45,11 +34,11 @@
     "xo": "^0.17.1"
   },
   "scripts": {
-    "lint": "xo",
-    "bundle": "browserify index.js --no-builtins -s unistUtilFindAllBefore > unist-util-find-all-before.js",
-    "postbundle": "esmangle unist-util-find-all-before.js > unist-util-find-all-before.min.js",
     "build-md": "mdast . --quiet",
-    "build": "npm run bundle && npm run build-md",
+    "build-bundle": "browserify index.js --no-builtins -s unistUtilFindAllBefore > unist-util-find-all-before.js",
+    "build-mangle": "esmangle unist-util-find-all-before.js > unist-util-find-all-before.min.js",
+    "build": "npm run build-md && npm run build-bundle && npm run build-mangle",
+    "lint": "xo",
     "test-api": "node test",
     "test-coverage": "nyc --reporter lcov tape test.js",
     "test": "npm run build && npm run lint && npm run test-coverage"
