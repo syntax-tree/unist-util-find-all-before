@@ -15,8 +15,8 @@ deploy:
     api_key:
       secure: XHJ0zw8sOk+aKHbbTBMojR14DYojDot0RzaF6CVrKDJldAMD2f8dKmtoeLdbFHYl0DTWpOYopyAQVmHhkUQzBt8T4Hse3kwsuXDZKgeNIW59UFJ/pUYt2Sg/3jNOLQusooePEk7pWEy2KhdHC112LwoJDhu/e+H+k+8LQeOFFbO6E+oLm1vo+pLcw3NKb8j1I6B8IZl0bIlPH8pDU5yBUS6rjEZfdwaOdZPHjAEZFc+RpHtmxgg8rpKFMPB/FrexPwdwyi1YxZaAY+w5s4s5p+AzACy+mbeM0Xxm8yD+ErvX3FRbcVOnzqWO7Bbfsl4doOHDtO4Lp/cLdgiI0+5N31oNIta83qvqTtNIzxnC3InGxbLAyoRNZZm4eTp6/rVnR+eLIGIN+Bxeko+08XHzdA6PJADDBm0jjaAuezcvIHUE7VsniN9yjU9STlK+SC+FEIzj9lXBNjMVwrEDD5C7kJVZN1WEgmMBN6t7OHGcGDy9j0CtRvATYB0IdKb0/M6t3ZieT8oTlNT4tK4PE6t/qfK1lGOYnS9ljnwaG50O+DhGVeV8ogZ4LJNcfsRaTiqYZZDEAAZ3idCbWNmkRtyni0YLod6seMPHu1ySrMlORCsXFqCxM59Zbe4tqecnivhH4JQPUOfOVLsmBNqpDQ3RErAtQYuvTjlblTj746As5go=
     file:
-      - "unist-util-find-before.js"
-      - "unist-util-find-before.min.js"
+      - "unist-util-find-all-before.js"
+      - "unist-util-find-all-before.min.js"
     on:
       tags: true
       node: '7.0'
