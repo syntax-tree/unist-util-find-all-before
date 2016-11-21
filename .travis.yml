@@ -1,9 +1,22 @@
 language: node_js
-script: npm run-script test-travis
 node_js:
-- '0.10'
-- '0.11'
-- '0.12'
-- iojs
-sudo: false
-after_script: npm install codecov.io && cat ./coverage/lcov.info | codecov
+- '4.0'
+- '7.0'
+after_script: bash <(curl -s https://codecov.io/bash)
+deploy:
+  - provider: npm
+    email: tituswormer@gmail.com
+    api_key:
+      secure: Kd28QHsO+pih6Dp+0xtGOUPkxeQqH8VWvnc3rWeDUisexnYuMdx2lEDwY5jaifBGEFaz0fb0GmUn/3rsFtqx/DGarkU/k79XrcbSjGpLoay81RoOqTlp6VetL7Y7NrfrOc3SUCO2GlIsVUyV7CVkVLa2hy0Ih3roGlkgY0THr9APY/sq2A5WvclirBtG62mIrJ71qOIauuCryA6YAwngZc2lLoS+XvbtbHnY1Q6naVqUh4vEiE1sB5xQ5cCroJU8YWh/XHinO3o6KtNnl/OwKQAaCvzSbFAgsMSNV2osYiW7G3Wpz6G755zH6T3yi/J9Toj78y0tHqkyONGR/47GsS32n5AVjhzfITD0vgjMfRgXF8NjfuPGbbM9v5n2KV+yaV8TgYLGW3IS8P0pfqHMyP89yedyzm3YwUMEa77qD/g3G1sITLMcMwgAKlMEkdvQzE6XX0oFaRXd5SjYy5W+ttKRpf0Q4K6W0At7CSgbbWEs4xDEuvuTMKFXPbaMgmLRX1slIb1NCEKTONyoN0I83TGMrJ2HC1eGwnUddwbMgYBW5mgufflGs0gSiiI7lcbLSB4UzAyyUumzOxWN/15pRvdn/WwdYVGXt2AGn/3TA9a2YeOhlmiOu2IgYMTBwGnQWwcqLAQIzQiHKDQdZ+w52lnnucsRD5JYnSix2tAQz9M=
+    on:
+      tags: true
+      node: '4.0'
+  - provider: releases
+    api_key:
+      secure: XHJ0zw8sOk+aKHbbTBMojR14DYojDot0RzaF6CVrKDJldAMD2f8dKmtoeLdbFHYl0DTWpOYopyAQVmHhkUQzBt8T4Hse3kwsuXDZKgeNIW59UFJ/pUYt2Sg/3jNOLQusooePEk7pWEy2KhdHC112LwoJDhu/e+H+k+8LQeOFFbO6E+oLm1vo+pLcw3NKb8j1I6B8IZl0bIlPH8pDU5yBUS6rjEZfdwaOdZPHjAEZFc+RpHtmxgg8rpKFMPB/FrexPwdwyi1YxZaAY+w5s4s5p+AzACy+mbeM0Xxm8yD+ErvX3FRbcVOnzqWO7Bbfsl4doOHDtO4Lp/cLdgiI0+5N31oNIta83qvqTtNIzxnC3InGxbLAyoRNZZm4eTp6/rVnR+eLIGIN+Bxeko+08XHzdA6PJADDBm0jjaAuezcvIHUE7VsniN9yjU9STlK+SC+FEIzj9lXBNjMVwrEDD5C7kJVZN1WEgmMBN6t7OHGcGDy9j0CtRvATYB0IdKb0/M6t3ZieT8oTlNT4tK4PE6t/qfK1lGOYnS9ljnwaG50O+DhGVeV8ogZ4LJNcfsRaTiqYZZDEAAZ3idCbWNmkRtyni0YLod6seMPHu1ySrMlORCsXFqCxM59Zbe4tqecnivhH4JQPUOfOVLsmBNqpDQ3RErAtQYuvTjlblTj746As5go=
+    file:
+      - "unist-util-find-before.js"
+      - "unist-util-find-before.min.js"
+    on:
+      tags: true
+      node: '7.0'
