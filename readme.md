@@ -56,13 +56,13 @@ Find the first child before `index` (or `node`) in `parent`, that passes `test`
 
 <!-- Definitions -->
 
-[travis-badge]: https://img.shields.io/travis/wooorm/unist-util-find-all-before.svg
+[travis-badge]: https://img.shields.io/travis/syntax-tree/unist-util-find-all-before.svg
 
-[travis]: https://travis-ci.org/wooorm/unist-util-find-all-before
+[travis]: https://travis-ci.org/syntax-tree/unist-util-find-all-before
 
-[codecov-badge]: https://img.shields.io/codecov/c/github/wooorm/unist-util-find-all-before.svg
+[codecov-badge]: https://img.shields.io/codecov/c/github/syntax-tree/unist-util-find-all-before.svg
 
-[codecov]: https://codecov.io/github/wooorm/unist-util-find-all-before
+[codecov]: https://codecov.io/github/syntax-tree/unist-util-find-all-before
 
 [npm]: https://docs.npmjs.com/cli/install
 
@@ -70,8 +70,8 @@ Find the first child before `index` (or `node`) in `parent`, that passes `test`
 
 [author]: http://wooorm.com
 
-[unist]: https://github.com/wooorm/unist
+[unist]: https://github.com/syntax-tree/unist
 
-[node]: https://github.com/wooorm/unist#node
+[node]: https://github.com/syntax-tree/unist#node
 
-[is]: https://github.com/wooorm/unist-util-is
+[is]: https://github.com/syntax-tree/unist-util-is
