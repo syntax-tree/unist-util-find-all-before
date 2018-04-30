@@ -3,7 +3,7 @@
 var assert = require('assert');
 var test = require('tape');
 var remark = require('remark');
-var findAllBefore = require('./');
+var findAllBefore = require('.');
 
 var tree = remark().parse('Some _emphasis_, **importance**, and `code`.');
 var paragraph = tree.children[0];
