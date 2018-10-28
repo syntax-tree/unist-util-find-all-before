@@ -22,19 +22,19 @@
   },
   "devDependencies": {
     "browserify": "^16.0.0",
-    "esmangle": "^1.0.0",
-    "nyc": "^11.0.0",
+    "nyc": "^13.0.0",
     "prettier": "^1.12.1",
-    "remark": "^9.0.0",
-    "remark-cli": "^5.0.0",
+    "remark": "^10.0.0",
+    "remark-cli": "^6.0.0",
     "remark-preset-wooorm": "^4.0.0",
     "tape": "^4.6.2",
-    "xo": "^0.20.0"
+    "tinyify": "^2.4.3",
+    "xo": "^0.23.0"
   },
   "scripts": {
     "format": "remark . -qfo && prettier --write '**/*.js' && xo --fix",
-    "build-bundle": "browserify index.js --no-builtins -s unistUtilFindAllBefore > unist-util-find-all-before.js",
-    "build-mangle": "esmangle unist-util-find-all-before.js > unist-util-find-all-before.min.js",
+    "build-bundle": "browserify . -s unistUtilFindAllBefore > unist-util-find-all-before.js",
+    "build-mangle": "browserify . -s unistUtilFindAllBefore -p tinyify > unist-util-find-all-before.min.js",
     "build": "npm run build-bundle && npm run build-mangle",
     "test-api": "node test",
     "test-coverage": "nyc --reporter lcov tape test.js",

@@ -60,38 +60,47 @@ test('unist-util-find-all-before', function(t) {
   t.doesNotThrow(function() {
     var res = [children[0]]
 
-    assert.deepEqual(findAllBefore(paragraph, children[1]), res)
-    assert.deepEqual(findAllBefore(paragraph, 1), res)
-    assert.deepEqual(findAllBefore(paragraph, 0), [])
+    assert.deepStrictEqual(findAllBefore(paragraph, children[1]), res)
+    assert.deepStrictEqual(findAllBefore(paragraph, 1), res)
+    assert.deepStrictEqual(findAllBefore(paragraph, 0), [])
   }, 'should return the preceding nodes when without `test`')
 
   t.doesNotThrow(function() {
     var res = [children[0]]
 
-    assert.deepEqual(findAllBefore(paragraph, 100, children[0]), res)
-    assert.deepEqual(findAllBefore(paragraph, children[1], children[0]), res)
-    assert.deepEqual(findAllBefore(paragraph, 1, children[0]), res)
-    assert.deepEqual(findAllBefore(paragraph, children[0], children[0]), [])
-    assert.deepEqual(findAllBefore(paragraph, 0, children[0]), [])
-    assert.deepEqual(findAllBefore(paragraph, 1, children[1]), [])
+    assert.deepStrictEqual(findAllBefore(paragraph, 100, children[0]), res)
+    assert.deepStrictEqual(
+      findAllBefore(paragraph, children[1], children[0]),
+      res
+    )
+    assert.deepStrictEqual(findAllBefore(paragraph, 1, children[0]), res)
+    assert.deepStrictEqual(
+      findAllBefore(paragraph, children[0], children[0]),
+      []
+    )
+    assert.deepStrictEqual(findAllBefore(paragraph, 0, children[0]), [])
+    assert.deepStrictEqual(findAllBefore(paragraph, 1, children[1]), [])
   }, 'should return `[node]` when given a `node` and existing')
 
   t.doesNotThrow(function() {
     var result = [children[3]]
 
-    assert.deepEqual(findAllBefore(paragraph, 100, 'strong'), result)
-    assert.deepEqual(findAllBefore(paragraph, 3, 'strong'), [])
-    assert.deepEqual(findAllBefore(paragraph, children[4], 'strong'), result)
-    assert.deepEqual(findAllBefore(paragraph, children[3], 'strong'), [])
+    assert.deepStrictEqual(findAllBefore(paragraph, 100, 'strong'), result)
+    assert.deepStrictEqual(findAllBefore(paragraph, 3, 'strong'), [])
+    assert.deepStrictEqual(
+      findAllBefore(paragraph, children[4], 'strong'),
+      result
+    )
+    assert.deepStrictEqual(findAllBefore(paragraph, children[3], 'strong'), [])
   }, 'should return children when given a `type` and existing')
 
   t.doesNotThrow(function() {
     var res = children.slice(4).reverse()
 
-    assert.deepEqual(findAllBefore(paragraph, 100, test), res)
-    assert.deepEqual(findAllBefore(paragraph, 3, test), [])
-    assert.deepEqual(findAllBefore(paragraph, children[4], test), [])
-    assert.deepEqual(findAllBefore(paragraph, children[3], test), [])
+    assert.deepStrictEqual(findAllBefore(paragraph, 100, test), res)
+    assert.deepStrictEqual(findAllBefore(paragraph, 3, test), [])
+    assert.deepStrictEqual(findAllBefore(paragraph, children[4], test), [])
+    assert.deepStrictEqual(findAllBefore(paragraph, children[3], test), [])
 
     function test(node, n) {
       return n > 3
