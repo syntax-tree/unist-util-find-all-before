@@ -8,35 +8,44 @@
 [![Backers][backers-badge]][collective]
 [![Chat][chat-badge]][chat]
 
-[**Unist**][unist] utility to find nodes before another node.
+[**unist**][unist] utility to find nodes before another node.
 
-## Installation
+## Install
 
 [npm][]:
 
-```bash
+```sh
 npm install unist-util-find-all-before
 ```
 
 ## Usage
 
 ```js
-var remark = require('remark')
+var u = require('unist-builder')
 var findAllBefore = require('unist-util-find-all-before')
 
-var tree = remark().parse('Some _emphasis_, **importance**, and `code`.')
-var paragraph = tree.children[0]
-var code = paragraph.children[paragraph.children.length - 1]
+var tree = u('tree', [
+  u('leaf', 'leaf 1'),
+  u('node', [u('leaf', 'leaf 2'), u('leaf', 'leaf 3')]),
+  u('leaf', 'leaf 4'),
+  u('node', [u('leaf', 'leaf 5')]),
+  u('leaf', 'leaf 6'),
+  u('void'),
+  u('leaf', 'leaf 7')
+])
 
-console.log(findAllBefore(paragraph, code, 'text'))
+var leaf6 = tree.children[4]
+
+console.log(findAllBefore(tree, leaf6, 'leaf'))
 ```
 
 Yields:
 
 ```js
-[ { type: 'text', value: ', and ' },
-  { type: 'text', value: ', ' },
-  { type: 'text', value: 'Some ' } ]
+[
+  { type: 'leaf', value: 'leaf 4' },
+  { type: 'leaf', value: 'leaf 1' }
+]
 ```
 
 ## API
@@ -48,15 +57,15 @@ Find the first child before `index` (or `node`) in `parent`, that passes `test`
 
 ###### Parameters
 
-*   `parent` ([`Node`][node]) — Context node
-*   `node` ([`Node`][node]) — Node in `parent`
-*   `index` (`number`, optional) — Position of a `node` in `parent`
-*   `test` (`Function`, `string`, or `Node`, optional)
+*   `parent` ([`Node`][node]) — [Parent][] node
+*   `node` ([`Node`][node]) — [Child][] of `parent`
+*   `index` (`number`, optional) — [Index][] in `parent`
+*   `test` (`Function`, `string`, `Object`, `Array`, optional)
     — See [`unist-util-is`][is]
 
 ###### Returns
 
-[`Array.<Node>`][node] — Child nodes of `parent` passing `test`.
+[`Array.<Node>`][node] — [Child][]ren of `parent` passing `test`.
 
 ## Related
 
@@ -73,11 +82,13 @@ Find the first child before `index` (or `node`) in `parent`, that passes `test`
 
 ## Contribute
 
-See [`contributing.md` in `syntax-tree/unist`][contributing] for ways to get
+See [`contributing.md` in `syntax-tree/.github`][contributing] for ways to get
 started.
+See [`support.md`][support] for ways to get help.
 
-This organisation has a [Code of Conduct][coc].  By interacting with this
-repository, organisation, or community you agree to abide by its terms.
+This project has a [Code of Conduct][coc].
+By interacting with this repository, organisation, or community you agree to
+abide by its terms.
 
 ## License
 
@@ -117,12 +128,20 @@ repository, organisation, or community you agree to abide by its terms.
 
 [author]: https://wooorm.com
 
+[contributing]: https://github.com/syntax-tree/.github/blob/master/contributing.md
+
+[support]: https://github.com/syntax-tree/.github/blob/master/support.md
+
+[coc]: https://github.com/syntax-tree/.github/blob/master/code-of-conduct.md
+
 [unist]: https://github.com/syntax-tree/unist
 
 [node]: https://github.com/syntax-tree/unist#node
 
+[parent]: https://github.com/syntax-tree/unist#parent-1
+
+[child]: https://github.com/syntax-tree/unist#child
+
+[index]: https://github.com/syntax-tree/unist#index
+
 [is]: https://github.com/syntax-tree/unist-util-is
-
-[contributing]: https://github.com/syntax-tree/unist/blob/master/contributing.md
-
-[coc]: https://github.com/syntax-tree/unist/blob/master/code-of-conduct.md
