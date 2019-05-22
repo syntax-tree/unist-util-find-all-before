@@ -32,7 +32,7 @@
     "xo": "^0.23.0"
   },
   "scripts": {
-    "format": "remark . -qfo && prettier --write '**/*.js' && xo --fix",
+    "format": "remark . -qfo && prettier --write \"**/*.js\" && xo --fix",
     "build-bundle": "browserify . -s unistUtilFindAllBefore > unist-util-find-all-before.js",
     "build-mangle": "browserify . -s unistUtilFindAllBefore -p tinyify > unist-util-find-all-before.min.js",
     "build": "npm run build-bundle && npm run build-mangle",
