@@ -1,4 +1,12 @@
-# unist-util-find-all-before [![Build Status][travis-badge]][travis] [![Coverage Status][codecov-badge]][codecov]
+# unist-util-find-all-before
+
+[![Build][build-badge]][build]
+[![Coverage][coverage-badge]][coverage]
+[![Downloads][downloads-badge]][downloads]
+[![Size][size-badge]][size]
+[![Sponsors][sponsors-badge]][collective]
+[![Backers][backers-badge]][collective]
+[![Chat][chat-badge]][chat]
 
 [**Unist**][unist] utility to find nodes before another node.
 
@@ -77,13 +85,31 @@ repository, organisation, or community you agree to abide by its terms.
 
 <!-- Definitions -->
 
-[travis-badge]: https://img.shields.io/travis/syntax-tree/unist-util-find-all-before.svg
+[build-badge]: https://img.shields.io/travis/syntax-tree/unist-util-find-all-before.svg
 
-[travis]: https://travis-ci.org/syntax-tree/unist-util-find-all-before
+[build]: https://travis-ci.org/syntax-tree/unist-util-find-all-before
 
-[codecov-badge]: https://img.shields.io/codecov/c/github/syntax-tree/unist-util-find-all-before.svg
+[coverage-badge]: https://img.shields.io/codecov/c/github/syntax-tree/unist-util-find-all-before.svg
 
-[codecov]: https://codecov.io/github/syntax-tree/unist-util-find-all-before
+[coverage]: https://codecov.io/github/syntax-tree/unist-util-find-all-before
+
+[downloads-badge]: https://img.shields.io/npm/dm/unist-util-find-all-before.svg
+
+[downloads]: https://www.npmjs.com/package/unist-util-find-all-before
+
+[size-badge]: https://img.shields.io/bundlephobia/minzip/unist-util-find-all-before.svg
+
+[size]: https://bundlephobia.com/result?p=unist-util-find-all-before
+
+[sponsors-badge]: https://opencollective.com/unified/sponsors/badge.svg
+
+[backers-badge]: https://opencollective.com/unified/backers/badge.svg
+
+[collective]: https://opencollective.com/unified
+
+[chat-badge]: https://img.shields.io/badge/join%20the%20community-on%20spectrum-7b16ff.svg
+
+[chat]: https://spectrum.chat/unified/syntax-tree
 
 [npm]: https://docs.npmjs.com/cli/install
 
