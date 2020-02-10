@@ -1,15 +1,16 @@
 {
   "name": "unist-util-find-all-before",
   "version": "2.0.4",
-  "description": "Utility to find nodes before another node",
+  "description": "unist utility to find nodes before another node",
   "license": "MIT",
   "keywords": [
     "unist",
+    "unist-util",
+    "util",
+    "utility",
     "node",
     "find",
-    "before",
-    "util",
-    "utility"
+    "before"
   ],
   "repository": "syntax-tree/unist-util-find-all-before",
   "bugs": "https://github.com/syntax-tree/unist-util-find-all-before/issues",
