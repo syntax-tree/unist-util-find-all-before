@@ -1,3 +1,5 @@
 coverage/
 unist-util-find-all-before.js
 unist-util-find-all-before.min.js
+*.json
+*.md
