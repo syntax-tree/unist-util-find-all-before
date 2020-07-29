@@ -22,11 +22,17 @@
   "contributors": [
     "Titus Wormer <tituswormer@gmail.com> (https://wooorm.com)"
   ],
+  "files": [
+    "index.js",
+    "index.d.ts"
+  ],
+  "types": "index.d.ts",
   "dependencies": {
     "unist-util-is": "^4.0.0"
   },
   "devDependencies": {
     "browserify": "^16.0.0",
+    "dtslint": "^3.6.14",
     "nyc": "^15.0.0",
     "prettier": "^2.0.0",
     "remark": "^12.0.0",
@@ -43,7 +49,8 @@
     "build": "npm run build-bundle && npm run build-mangle",
     "test-api": "node test",
     "test-coverage": "nyc --reporter lcov tape test.js",
-    "test": "npm run format && npm run build && npm run test-coverage"
+    "test-types": "dtslint .",
+    "test": "npm run format && npm run build && npm run test-coverage && npm run test-types"
   },
   "nyc": {
     "check-coverage": true,
@@ -66,7 +73,8 @@
       "unicorn/prefer-number-properties": "off"
     },
     "ignore": [
-      "unist-util-find-all-before.js"
+      "unist-util-find-all-before.js",
+      "*.ts"
     ]
   },
   "remarkConfig": {
