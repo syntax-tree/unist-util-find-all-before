@@ -70,6 +70,15 @@
     "prettier": true,
     "esnext": false,
     "rules": {
+      "eqeqeq": [
+        "error",
+        "always",
+        {
+          "null": "ignore"
+        }
+      ],
+      "guard-for-in": "off",
+      "no-eq-null": "off",
       "unicorn/prefer-number-properties": "off"
     },
     "ignore": [
