@@ -12,6 +12,9 @@
 
 ## Install
 
+This package is [ESM only](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c):
+Node 12+ is needed to use it and it must be `import`ed instead of `require`d.
+
 [npm][]:
 
 ```sh
@@ -21,8 +24,8 @@ npm install unist-util-find-all-before
 ## Use
 
 ```js
-var u = require('unist-builder')
-var findAllBefore = require('unist-util-find-all-before')
+import {u} from 'unist-builder'
+import {findAllBefore} from 'unist-util-find-all-before'
 
 var tree = u('tree', [
   u('leaf', 'leaf 1'),
@@ -49,6 +52,9 @@ Yields:
 ```
 
 ## API
+
+This package exports the following identifiers: `findAllBefore`.
+There is no default export.
 
 ### `findAllBefore(parent, node|index[, test])`
 
