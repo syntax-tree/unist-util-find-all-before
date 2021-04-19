@@ -9,6 +9,7 @@ var children = paragraph.children
 test('unist-util-find-all-before', function (t) {
   t.throws(
     function () {
+      // @ts-ignore runtime.
       findAllBefore()
     },
     /Expected parent node/,
@@ -17,6 +18,7 @@ test('unist-util-find-all-before', function (t) {
 
   t.throws(
     function () {
+      // @ts-ignore runtime.
       findAllBefore({type: 'foo'})
     },
     /Expected parent node/,
@@ -25,6 +27,7 @@ test('unist-util-find-all-before', function (t) {
 
   t.throws(
     function () {
+      // @ts-ignore runtime.
       findAllBefore({type: 'foo', children: []})
     },
     /Expected child node or index/,
@@ -49,6 +52,7 @@ test('unist-util-find-all-before', function (t) {
 
   t.throws(
     function () {
+      // @ts-ignore runtime.
       findAllBefore({type: 'foo', children: [{type: 'bar'}]}, 1, false)
     },
     /Expected function, string, or object as test/,
@@ -57,6 +61,7 @@ test('unist-util-find-all-before', function (t) {
 
   t.throws(
     function () {
+      // @ts-ignore runtime.
       findAllBefore({type: 'foo', children: [{type: 'bar'}]}, 1, true)
     },
     /Expected function, string, or object as test/,
@@ -154,7 +159,11 @@ test('unist-util-find-all-before', function (t) {
     'should return children when given a `test` and existing (#4)'
   )
 
-  function test(node, n) {
+  /**
+   * @param {unknown} _
+   * @param {number} n
+   */
+  function test(_, n) {
     return n > 3
   }
 
