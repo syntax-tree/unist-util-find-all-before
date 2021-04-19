@@ -7,6 +7,7 @@ module.exports = findAllBefore
 function findAllBefore(parent, index, test) {
   var is = convert(test)
   var results = []
+  var offset = -1
 
   if (!parent || !parent.type || !parent.children) {
     throw new Error('Expected parent node')
@@ -29,9 +30,9 @@ function findAllBefore(parent, index, test) {
     index = parent.children.length
   }
 
-  while (index--) {
-    if (is(parent.children[index], index, parent)) {
-      results.push(parent.children[index])
+  while (++offset < index) {
+    if (is(parent.children[offset], offset, parent)) {
+      results.push(parent.children[offset])
     }
   }
 

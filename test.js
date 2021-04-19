@@ -133,7 +133,7 @@ test('unist-util-find-all-before', function (t) {
     'should return children when given a `type` and existing (#4)'
   )
 
-  var result = children.slice(4).reverse()
+  var result = children.slice(4)
 
   t.deepEqual(
     findAllBefore(paragraph, 100, test),
