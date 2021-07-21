@@ -3,13 +3,14 @@ import remark from 'remark'
 import {findAllBefore} from './index.js'
 
 var tree = remark().parse('Some _emphasis_, **importance**, and `code`.')
+// @ts-expect-error hush.
 var paragraph = tree.children[0]
 var children = paragraph.children
 
 test('unist-util-find-all-before', function (t) {
   t.throws(
     function () {
-      // @ts-ignore runtime.
+      // @ts-expect-error runtime.
       findAllBefore()
     },
     /Expected parent node/,
@@ -18,7 +19,7 @@ test('unist-util-find-all-before', function (t) {
 
   t.throws(
     function () {
-      // @ts-ignore runtime.
+      // @ts-expect-error runtime.
       findAllBefore({type: 'foo'})
     },
     /Expected parent node/,
@@ -27,7 +28,7 @@ test('unist-util-find-all-before', function (t) {
 
   t.throws(
     function () {
-      // @ts-ignore runtime.
+      // @ts-expect-error runtime.
       findAllBefore({type: 'foo', children: []})
     },
     /Expected child node or index/,
@@ -52,7 +53,7 @@ test('unist-util-find-all-before', function (t) {
 
   t.throws(
     function () {
-      // @ts-ignore runtime.
+      // @ts-expect-error runtime.
       findAllBefore({type: 'foo', children: [{type: 'bar'}]}, 1, false)
     },
     /Expected function, string, or object as test/,
@@ -61,7 +62,7 @@ test('unist-util-find-all-before', function (t) {
 
   t.throws(
     function () {
-      // @ts-ignore runtime.
+      // @ts-expect-error runtime.
       findAllBefore({type: 'foo', children: [{type: 'bar'}]}, 1, true)
     },
     /Expected function, string, or object as test/,
