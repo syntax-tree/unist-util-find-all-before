@@ -162,10 +162,10 @@ test('unist-util-find-all-before', (t) => {
 
   /**
    * @param {unknown} _
-   * @param {number} n
+   * @param {number|null|undefined} n
    */
   function test(_, n) {
-    return n > 3
+    return typeof n === 'number' && n > 3
   }
 
   t.end()
