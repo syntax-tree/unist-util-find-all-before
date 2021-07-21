@@ -2,14 +2,14 @@ import test from 'tape'
 import remark from 'remark'
 import {findAllBefore} from './index.js'
 
-var tree = remark().parse('Some _emphasis_, **importance**, and `code`.')
+const tree = remark().parse('Some _emphasis_, **importance**, and `code`.')
 // @ts-expect-error hush.
-var paragraph = tree.children[0]
-var children = paragraph.children
+const paragraph = tree.children[0]
+const children = paragraph.children
 
-test('unist-util-find-all-before', function (t) {
+test('unist-util-find-all-before', (t) => {
   t.throws(
-    function () {
+    () => {
       // @ts-expect-error runtime.
       findAllBefore()
     },
@@ -18,7 +18,7 @@ test('unist-util-find-all-before', function (t) {
   )
 
   t.throws(
-    function () {
+    () => {
       // @ts-expect-error runtime.
       findAllBefore({type: 'foo'})
     },
@@ -27,7 +27,7 @@ test('unist-util-find-all-before', function (t) {
   )
 
   t.throws(
-    function () {
+    () => {
       // @ts-expect-error runtime.
       findAllBefore({type: 'foo', children: []})
     },
@@ -36,7 +36,7 @@ test('unist-util-find-all-before', function (t) {
   )
 
   t.throws(
-    function () {
+    () => {
       findAllBefore({type: 'foo', children: []}, -1)
     },
     /Expected positive finite number as index/,
@@ -44,7 +44,7 @@ test('unist-util-find-all-before', function (t) {
   )
 
   t.throws(
-    function () {
+    () => {
       findAllBefore({type: 'foo', children: []}, {type: 'bar'})
     },
     /Expected child node or index/,
@@ -52,7 +52,7 @@ test('unist-util-find-all-before', function (t) {
   )
 
   t.throws(
-    function () {
+    () => {
       // @ts-expect-error runtime.
       findAllBefore({type: 'foo', children: [{type: 'bar'}]}, 1, false)
     },
@@ -61,7 +61,7 @@ test('unist-util-find-all-before', function (t) {
   )
 
   t.throws(
-    function () {
+    () => {
       // @ts-expect-error runtime.
       findAllBefore({type: 'foo', children: [{type: 'bar'}]}, 1, true)
     },
@@ -137,7 +137,7 @@ test('unist-util-find-all-before', function (t) {
     'should return children when given a `type` and existing (#4)'
   )
 
-  var result = children.slice(4)
+  const result = children.slice(4)
 
   t.deepEqual(
     findAllBefore(paragraph, 100, test),

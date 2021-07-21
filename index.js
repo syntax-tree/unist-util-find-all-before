@@ -26,10 +26,10 @@ export const findAllBefore =
      * @returns {Array.<Node>}
      */
     function (parent, index, test) {
-      var is = convert(test)
+      const is = convert(test)
       /** @type {Array.<Node>} */
-      var results = []
-      var offset = -1
+      const results = []
+      let offset = -1
 
       if (!parent || !parent.type || !parent.children) {
         throw new Error('Expected parent node')
