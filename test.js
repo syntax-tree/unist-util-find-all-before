@@ -1,10 +1,13 @@
+/**
+ * @typedef {import('mdast').Paragraph} Paragraph
+ */
+
 import test from 'tape'
-import remark from 'remark'
+import {remark} from 'remark'
 import {findAllBefore} from './index.js'
 
 const tree = remark().parse('Some _emphasis_, **importance**, and `code`.')
-// @ts-expect-error hush.
-const paragraph = tree.children[0]
+const paragraph = /** @type {Paragraph} */ (tree.children[0])
 const children = paragraph.children
 
 test('unist-util-find-all-before', (t) => {
@@ -86,31 +89,37 @@ test('unist-util-find-all-before', (t) => {
   )
 
   t.deepEqual(
+    // @ts-expect-error: TypeScript does not understand things.
     findAllBefore(paragraph, 100, children[0]),
     [children[0]],
     'should return `[node]` when given a `node` and existing (#1)'
   )
   t.deepEqual(
+    // @ts-expect-error: TypeScript does not understand things.
     findAllBefore(paragraph, children[1], children[0]),
     [children[0]],
     'should return `[node]` when given a `node` and existing (#2)'
   )
   t.deepEqual(
+    // @ts-expect-error: TypeScript does not understand things.
     findAllBefore(paragraph, 1, children[0]),
     [children[0]],
     'should return `[node]` when given a `node` and existing (#3)'
   )
   t.deepEqual(
+    // @ts-expect-error: TypeScript does not understand things.
     findAllBefore(paragraph, children[0], children[0]),
     [],
     'should return `[node]` when given a `node` and existing (#4)'
   )
   t.deepEqual(
+    // @ts-expect-error: TypeScript does not understand things.
     findAllBefore(paragraph, 0, children[0]),
     [],
     'should return `[node]` when given a `node` and existing (#5)'
   )
   t.deepEqual(
+    // @ts-expect-error: TypeScript does not understand things.
     findAllBefore(paragraph, 1, children[1]),
     [],
     'should return `[node]` when given a `node` and existing (#6)'
