@@ -3,10 +3,10 @@
  */
 
 import test from 'tape'
-import {remark} from 'remark'
+import {fromMarkdown} from 'mdast-util-from-markdown'
 import {findAllBefore} from './index.js'
 
-const tree = remark().parse('Some _emphasis_, **importance**, and `code`.')
+const tree = fromMarkdown('Some _emphasis_, **importance**, and `code`.')
 const paragraph = /** @type {Paragraph} */ (tree.children[0])
 const children = paragraph.children
 
