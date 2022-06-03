@@ -9,6 +9,19 @@
 
 import {convert} from 'unist-util-is'
 
+/**
+ * Find the first node in `parent` before another `node` or before an index,
+ * that passes `test`.
+
+ * @param parent
+ *   Parent node.
+ * @param index
+ *   Child of `parent` or it’s index.
+ * @param [test]
+ *   `unist-util-is`-compatible test.
+ * @returns
+ *   Children of `parent` that pass `test`.
+ */
 export const findAllBefore =
   /**
    * @type {(
@@ -18,11 +31,9 @@ export const findAllBefore =
    */
   (
     /**
-     * Utility to get all children of a parent after a node or index
-     *
-     * @param {Parent} parent Parent node
-     * @param {Node|number} index Child of `parent`, or it’s index
-     * @param {null|undefined|Type|Props|TestFunctionAnything|Array<Type|Props|TestFunctionAnything>} [test] is-compatible test (such as a type)
+     * @param {Parent} parent
+     * @param {Node|number} index
+     * @param {null|undefined|Type|Props|TestFunctionAnything|Array<Type|Props|TestFunctionAnything>} [test]
      * @returns {Array<Node>}
      */
     function (parent, index, test) {
