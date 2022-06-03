@@ -12,8 +12,8 @@ import {convert} from 'unist-util-is'
 export const findAllBefore =
   /**
    * @type {(
-   *  (<T extends Node>(node: Parent, index: Node|number, test: T['type']|Partial<T>|import('unist-util-is').TestFunctionPredicate<T>|Array.<T['type']|Partial<T>|import('unist-util-is').TestFunctionPredicate<T>>) => Array.<T>) &
-   *  ((node: Parent, index: Node|number, test?: null|undefined|Type|Props|TestFunctionAnything|Array<Type|Props|TestFunctionAnything>) => Array.<Node>)
+   *  (<T extends Node>(node: Parent, index: Node|number, test: T['type']|Partial<T>|import('unist-util-is').TestFunctionPredicate<T>|Array<T['type']|Partial<T>|import('unist-util-is').TestFunctionPredicate<T>>) => Array<T>) &
+   *  ((node: Parent, index: Node|number, test?: null|undefined|Type|Props|TestFunctionAnything|Array<Type|Props|TestFunctionAnything>) => Array<Node>)
    * )}
    */
   (
@@ -23,11 +23,11 @@ export const findAllBefore =
      * @param {Parent} parent Parent node
      * @param {Node|number} index Child of `parent`, or it’s index
      * @param {null|undefined|Type|Props|TestFunctionAnything|Array<Type|Props|TestFunctionAnything>} [test] is-compatible test (such as a type)
-     * @returns {Array.<Node>}
+     * @returns {Array<Node>}
      */
     function (parent, index, test) {
       const is = convert(test)
-      /** @type {Array.<Node>} */
+      /** @type {Array<Node>} */
       const results = []
       let offset = -1
 
