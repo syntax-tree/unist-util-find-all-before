@@ -2,7 +2,8 @@
  * @typedef {import('mdast').Paragraph} Paragraph
  */
 
-import test from 'tape'
+import assert from 'node:assert/strict'
+import test from 'node:test'
 import {fromMarkdown} from 'mdast-util-from-markdown'
 import {findAllBefore} from './index.js'
 
@@ -10,8 +11,8 @@ const tree = fromMarkdown('Some _emphasis_, **importance**, and `code`.')
 const paragraph = /** @type {Paragraph} */ (tree.children[0])
 const children = paragraph.children
 
-test('unist-util-find-all-before', (t) => {
-  t.throws(
+test('unist-util-find-all-before', () => {
+  assert.throws(
     () => {
       // @ts-expect-error runtime.
       findAllBefore()
@@ -20,7 +21,7 @@ test('unist-util-find-all-before', (t) => {
     'should fail without parent'
   )
 
-  t.throws(
+  assert.throws(
     () => {
       // @ts-expect-error runtime.
       findAllBefore({type: 'foo'})
@@ -29,7 +30,7 @@ test('unist-util-find-all-before', (t) => {
     'should fail without parent node'
   )
 
-  t.throws(
+  assert.throws(
     () => {
       // @ts-expect-error runtime.
       findAllBefore({type: 'foo', children: []})
@@ -38,7 +39,7 @@ test('unist-util-find-all-before', (t) => {
     'should fail without index (#1)'
   )
 
-  t.throws(
+  assert.throws(
     () => {
       findAllBefore({type: 'foo', children: []}, -1)
     },
@@ -46,7 +47,7 @@ test('unist-util-find-all-before', (t) => {
     'should fail without index (#2)'
   )
 
-  t.throws(
+  assert.throws(
     () => {
       findAllBefore({type: 'foo', children: []}, {type: 'bar'})
     },
@@ -54,7 +55,7 @@ test('unist-util-find-all-before', (t) => {
     'should fail without index (#3)'
   )
 
-  t.throws(
+  assert.throws(
     () => {
       // @ts-expect-error runtime.
       findAllBefore({type: 'foo', children: [{type: 'bar'}]}, 1, false)
@@ -63,7 +64,7 @@ test('unist-util-find-all-before', (t) => {
     'should fail for invalid `test` (#1)'
   )
 
-  t.throws(
+  assert.throws(
     () => {
       // @ts-expect-error runtime.
       findAllBefore({type: 'foo', children: [{type: 'bar'}]}, 1, true)
@@ -72,75 +73,75 @@ test('unist-util-find-all-before', (t) => {
     'should fail for invalid `test` (#2)'
   )
 
-  t.deepEqual(
+  assert.deepEqual(
     findAllBefore(paragraph, children[1]),
     [children[0]],
     'should return the preceding nodes when without `test` (#1)'
   )
-  t.deepEqual(
+  assert.deepEqual(
     findAllBefore(paragraph, 1),
     [children[0]],
     'should return the preceding nodes when without `test` (#1)'
   )
-  t.deepEqual(
+  assert.deepEqual(
     findAllBefore(paragraph, 0),
     [],
     'should return the preceding nodes when without `test` (#1)'
   )
 
-  t.deepEqual(
+  assert.deepEqual(
     // @ts-expect-error: TypeScript does not understand things.
     findAllBefore(paragraph, 100, children[0]),
     [children[0]],
     'should return `[node]` when given a `node` and existing (#1)'
   )
-  t.deepEqual(
+  assert.deepEqual(
     // @ts-expect-error: TypeScript does not understand things.
     findAllBefore(paragraph, children[1], children[0]),
     [children[0]],
     'should return `[node]` when given a `node` and existing (#2)'
   )
-  t.deepEqual(
+  assert.deepEqual(
     // @ts-expect-error: TypeScript does not understand things.
     findAllBefore(paragraph, 1, children[0]),
     [children[0]],
     'should return `[node]` when given a `node` and existing (#3)'
   )
-  t.deepEqual(
+  assert.deepEqual(
     // @ts-expect-error: TypeScript does not understand things.
     findAllBefore(paragraph, children[0], children[0]),
     [],
     'should return `[node]` when given a `node` and existing (#4)'
   )
-  t.deepEqual(
+  assert.deepEqual(
     // @ts-expect-error: TypeScript does not understand things.
     findAllBefore(paragraph, 0, children[0]),
     [],
     'should return `[node]` when given a `node` and existing (#5)'
   )
-  t.deepEqual(
+  assert.deepEqual(
     // @ts-expect-error: TypeScript does not understand things.
     findAllBefore(paragraph, 1, children[1]),
     [],
     'should return `[node]` when given a `node` and existing (#6)'
   )
 
-  t.deepEqual(
+  assert.deepEqual(
     findAllBefore(paragraph, 100, 'strong'),
     [children[3]],
     'should return children when given a `type` and existing (#1)'
   )
-  t.deepEqual(
+  assert.deepEqual(
     findAllBefore(paragraph, 3, 'strong'),
     [],
     'should return children when given a `type` and existing (#2)'
   )
-  t.deepEqual(
+  assert.deepEqual(
     findAllBefore(paragraph, children[4], 'strong'),
     [children[3]],
     'should return children when given a `type` and existing (#3)'
   )
-  t.deepEqual(
+  assert.deepEqual(
     findAllBefore(paragraph, children[3], 'strong'),
     [],
     'should return children when given a `type` and existing (#4)'
@@ -148,34 +149,32 @@ test('unist-util-find-all-before', (t) => {
 
   const result = children.slice(4)
 
-  t.deepEqual(
-    findAllBefore(paragraph, 100, test),
+  assert.deepEqual(
+    findAllBefore(paragraph, 100, check),
     result,
     'should return children when given a `test` and existing (#1)'
   )
-  t.deepEqual(
-    findAllBefore(paragraph, 3, test),
+  assert.deepEqual(
+    findAllBefore(paragraph, 3, check),
     [],
     'should return children when given a `test` and existing (#2)'
   )
-  t.deepEqual(
-    findAllBefore(paragraph, children[4], test),
+  assert.deepEqual(
+    findAllBefore(paragraph, children[4], check),
     [],
     'should return children when given a `test` and existing (#3)'
   )
-  t.deepEqual(
-    findAllBefore(paragraph, children[3], test),
+  assert.deepEqual(
+    findAllBefore(paragraph, children[3], check),
     [],
     'should return children when given a `test` and existing (#4)'
   )
 
   /**
    * @param {unknown} _
-   * @param {number|null|undefined} n
+   * @param {number | null | undefined} n
    */
-  function test(_, n) {
+  function check(_, n) {
     return typeof n === 'number' && n > 3
   }
-
-  t.end()
 })
