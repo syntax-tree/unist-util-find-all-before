@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
 import {fromMarkdown} from 'mdast-util-from-markdown'
-import {findAllBefore} from './index.js'
+import {findAllBefore} from 'unist-util-find-all-before'
 
 const tree = fromMarkdown('Some _emphasis_, **importance**, and `code`.')
 const paragraph = tree.children[0]
@@ -10,9 +10,10 @@ const children = paragraph.children
 
 test('findAllBefore', async function (t) {
   await t.test('should expose the public api', async function () {
-    assert.deepEqual(Object.keys(await import('./index.js')).sort(), [
-      'findAllBefore'
-    ])
+    assert.deepEqual(
+      Object.keys(await import('unist-util-find-all-before')).sort(),
+      ['findAllBefore']
+    )
   })
 
   await t.test('should fail without parent', async function () {
