@@ -47,14 +47,14 @@ npm install unist-util-find-all-before
 In Deno with [`esm.sh`][esmsh]:
 
 ```js
-import {findAllBefore} from 'https://esm.sh/unist-util-find-all-before@4'
+import {findAllBefore} from 'https://esm.sh/unist-util-find-all-before@5'
 ```
 
 In browsers with [`esm.sh`][esmsh]:
 
 ```html
 <script type="module">
-  import {findAllBefore} from 'https://esm.sh/unist-util-find-all-before@4?bundle'
+  import {findAllBefore} from 'https://esm.sh/unist-util-find-all-before@5?bundle'
 </script>
 ```
 
