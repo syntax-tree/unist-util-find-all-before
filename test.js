@@ -1,12 +1,13 @@
+/**
+ * @typedef {import('mdast').Emphasis} Emphasis
+ * @typedef {import('mdast').InlineCode} InlineCode
+ * @typedef {import('unist').Node} UnistNode
+ */
+
 import assert from 'node:assert/strict'
 import test from 'node:test'
 import {fromMarkdown} from 'mdast-util-from-markdown'
 import {findAllBefore} from 'unist-util-find-all-before'
-
-const tree = fromMarkdown('Some _emphasis_, **importance**, and `code`.')
-const paragraph = tree.children[0]
-assert(paragraph.type === 'paragraph')
-const children = paragraph.children
 
 test('findAllBefore', async function (t) {
   await t.test('should expose the public api', async function () {
@@ -15,6 +16,21 @@ test('findAllBefore', async function (t) {
       ['findAllBefore']
     )
   })
+
+  const tree = fromMarkdown('Some *emphasis*, **importance**, and `code`.')
+
+  assert(tree.type === 'root')
+  const paragraph = tree.children[0]
+  assert(paragraph.type === 'paragraph')
+  const head = paragraph.children[0]
+  assert(head.type === 'text')
+  const next = paragraph.children[1]
+  assert(next.type === 'emphasis')
+
+  /** @type {Emphasis} */
+  const emphasis = {type: 'emphasis', children: []}
+  /** @type {InlineCode} */
+  const inlineCode = {type: 'inlineCode', value: 'a'}
 
   await t.test('should fail without parent', async function () {
     assert.throws(function () {
@@ -26,54 +42,64 @@ test('findAllBefore', async function (t) {
   await t.test('should fail without parent node', async function () {
     assert.throws(function () {
       // @ts-expect-error: check that an error is thrown at runtime.
-      findAllBefore({type: 'foo'})
+      findAllBefore(inlineCode)
     }, /Expected parent node/)
   })
 
   await t.test('should fail without index (#1)', async function () {
     assert.throws(function () {
       // @ts-expect-error: check that an error is thrown at runtime.
-      findAllBefore({type: 'foo', children: []})
+      findAllBefore(emphasis)
     }, /Expected child node or index/)
   })
 
   await t.test('should fail without index (#2)', async function () {
     assert.throws(function () {
-      findAllBefore({type: 'foo', children: []}, -1)
+      findAllBefore(emphasis, -1)
     }, /Expected positive finite number as index/)
   })
 
   await t.test('should fail without index (#3)', async function () {
     assert.throws(function () {
-      findAllBefore({type: 'foo', children: []}, {type: 'bar'})
+      findAllBefore(emphasis, inlineCode)
     }, /Expected child node or index/)
   })
 
   await t.test('should fail for invalid `test` (#1)', async function () {
     assert.throws(function () {
-      // @ts-expect-error: check that an error is thrown at runtime.
-      findAllBefore({type: 'foo', children: [{type: 'bar'}]}, 1, false)
+      findAllBefore(
+        emphasis,
+        1,
+        // @ts-expect-error: check that an error is thrown at runtime.
+        false
+      )
     }, /Expected function, string, or object as test/)
   })
 
   await t.test('should fail for invalid `test` (#2)', async function () {
     assert.throws(function () {
-      // @ts-expect-error: check that an error is thrown at runtime.
-      findAllBefore({type: 'foo', children: [{type: 'bar'}]}, 1, true)
+      findAllBefore(
+        emphasis,
+        1,
+        // @ts-expect-error: check that an error is thrown at runtime.
+        true
+      )
     }, /Expected function, string, or object as test/)
   })
 
   await t.test(
     'should return the preceding nodes when without `test` (#1)',
     async function () {
-      assert.deepEqual(findAllBefore(paragraph, children[1]), [children[0]])
+      assert.deepEqual(findAllBefore(paragraph, paragraph.children[1]), [
+        paragraph.children[0]
+      ])
     }
   )
 
   await t.test(
     'should return the preceding nodes when without `test` (#1)',
     async function () {
-      assert.deepEqual(findAllBefore(paragraph, 1), [children[0]])
+      assert.deepEqual(findAllBefore(paragraph, 1), [paragraph.children[0]])
     }
   )
 
@@ -87,7 +113,7 @@ test('findAllBefore', async function (t) {
   await t.test(
     'should return `[node]` when given a `node` and existing (#1)',
     async function () {
-      const head = children[0]
+      const head = paragraph.children[0]
       assert(head.type === 'text')
       assert.deepEqual(findAllBefore(paragraph, 100, head), [head])
     }
@@ -96,16 +122,18 @@ test('findAllBefore', async function (t) {
   await t.test(
     'should return `[node]` when given a `node` and existing (#2)',
     async function () {
-      const head = children[0]
+      const head = paragraph.children[0]
       assert(head.type === 'text')
-      assert.deepEqual(findAllBefore(paragraph, children[1], head), [head])
+      assert.deepEqual(findAllBefore(paragraph, paragraph.children[1], head), [
+        head
+      ])
     }
   )
 
   await t.test(
     'should return `[node]` when given a `node` and existing (#3)',
     async function () {
-      const head = children[0]
+      const head = paragraph.children[0]
       assert(head.type === 'text')
       assert.deepEqual(findAllBefore(paragraph, 1, head), [head])
     }
@@ -114,7 +142,7 @@ test('findAllBefore', async function (t) {
   await t.test(
     'should return `[node]` when given a `node` and existing (#4)',
     async function () {
-      const head = children[0]
+      const head = paragraph.children[0]
       assert(head.type === 'text')
       assert.deepEqual(findAllBefore(paragraph, head, head), [])
     }
@@ -123,7 +151,7 @@ test('findAllBefore', async function (t) {
   await t.test(
     'should return `[node]` when given a `node` and existing (#5)',
     async function () {
-      const head = children[0]
+      const head = paragraph.children[0]
       assert(head.type === 'text')
       assert.deepEqual(findAllBefore(paragraph, 0, head), [])
     }
@@ -132,7 +160,7 @@ test('findAllBefore', async function (t) {
   await t.test(
     'should return `[node]` when given a `node` and existing (#6)',
     async function () {
-      const child = children[1]
+      const child = paragraph.children[1]
       assert(child.type === 'emphasis')
       assert.deepEqual(findAllBefore(paragraph, 1, child), [])
     }
@@ -141,7 +169,9 @@ test('findAllBefore', async function (t) {
   await t.test(
     'should return children when given a `type` and existing (#1)',
     async function () {
-      assert.deepEqual(findAllBefore(paragraph, 100, 'strong'), [children[3]])
+      assert.deepEqual(findAllBefore(paragraph, 100, 'strong'), [
+        paragraph.children[3]
+      ])
     }
   )
 
@@ -155,23 +185,27 @@ test('findAllBefore', async function (t) {
   await t.test(
     'should return children when given a `type` and existing (#3)',
     async function () {
-      assert.deepEqual(findAllBefore(paragraph, children[4], 'strong'), [
-        children[3]
-      ])
+      assert.deepEqual(
+        findAllBefore(paragraph, paragraph.children[4], 'strong'),
+        [paragraph.children[3]]
+      )
     }
   )
 
   await t.test(
     'should return children when given a `type` and existing (#4)',
     async function () {
-      assert.deepEqual(findAllBefore(paragraph, children[3], 'strong'), [])
+      assert.deepEqual(
+        findAllBefore(paragraph, paragraph.children[3], 'strong'),
+        []
+      )
     }
   )
 
   await t.test(
     'should return children when given a `test` and existing (#1)',
     async function () {
-      const result = children.slice(4)
+      const result = paragraph.children.slice(4)
 
       assert.deepEqual(findAllBefore(paragraph, 100, check), result)
     }
@@ -187,14 +221,20 @@ test('findAllBefore', async function (t) {
   await t.test(
     'should return children when given a `test` and existing (#3)',
     async function () {
-      assert.deepEqual(findAllBefore(paragraph, children[4], check), [])
+      assert.deepEqual(
+        findAllBefore(paragraph, paragraph.children[4], check),
+        []
+      )
     }
   )
 
   await t.test(
     'should return children when given a `test` and existing (#4)',
     async function () {
-      assert.deepEqual(findAllBefore(paragraph, children[3], check), [])
+      assert.deepEqual(
+        findAllBefore(paragraph, paragraph.children[3], check),
+        []
+      )
     }
   )
 })
